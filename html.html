@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera App</title>
+    <style>
+        #video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Camera App</h1>
+    <video id="video" autoplay playsinline></video>
+    <script>
+        // Function to handle the camera stream
+        async function startCamera() {
+            try {
+                const constraints = { video: true, audio: false };
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                const videoElement = document.getElementById('video');
+                videoElement.srcObject = stream;
+            } catch (error) {
+                console.error('Error accessing the camera:', error);
+            }
+        }
+
+        // Call the function to start the camera stream when the page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            startCamera();
+        });
+    </script>
+</body>
+</html>
